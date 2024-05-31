@@ -2,15 +2,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { inter } from '@/app/fonts';
-import ShowIcon from '@/assets/icons/show-icon.svg';
-import HiddenIcon from '@/assets/icons/hidden-icon.svg';
-import ErrorInfoIcon from '@/assets/icons/error-info-icon.svg';
 import { Text } from '@/app/components/common/index';
 import {
   LabelContainer,
   InputContainer,
   InputComponent,
-  IconWrapper,
   ErrorMessageContainer,
 } from './input.styled';
 
@@ -87,7 +83,6 @@ export default function Input({
 
             {error ? (
               <ErrorMessageContainer>
-                <Image src={ErrorInfoIcon} alt="" />{' '}
                 <Text
                   htmlTag={'span'}
                   type={'body-small'}
@@ -130,18 +125,17 @@ export default function Input({
                 placeholder={placeHolder}
               />
 
-              <IconWrapper onClick={toggleShowPassword}>
+              {/* <IconWrapper onClick={toggleShowPassword}>
                 {showPassword ? (
                   <Image src={ShowIcon} alt="" />
                 ) : (
                   <Image src={HiddenIcon} alt="" />
                 )}
-              </IconWrapper>
+              </IconWrapper> */}
             </InputContainer>
 
             {error ? (
               <ErrorMessageContainer>
-                <Image src={ErrorInfoIcon} alt="" />{' '}
                 <Text
                   htmlTag={'span'}
                   type={'body-small'}
@@ -193,7 +187,6 @@ export default function Input({
 
             {error ? (
               <ErrorMessageContainer>
-                <Image src={ErrorInfoIcon} alt="" />{' '}
                 <Text
                   htmlTag={'span'}
                   type={'body-small'}

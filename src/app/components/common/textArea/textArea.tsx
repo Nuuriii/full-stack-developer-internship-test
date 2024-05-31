@@ -1,7 +1,6 @@
 'use client';
 import { Text } from '@/app/components/common/index';
 import { inter } from '@/app/fonts';
-import ErrorIconInfo from '@/assets/icons/error-info-icon.svg';
 import Image from 'next/image';
 import {
   TextAreaContainer,
@@ -48,7 +47,6 @@ export default function TextArea({
 
       {error ? (
         <ErrorContainer>
-          <Image src={ErrorIconInfo} alt="" />
           <Text
             htmlTag={'span'}
             type={'body-small'}
