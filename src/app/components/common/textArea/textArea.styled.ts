@@ -11,15 +11,16 @@ export const TextAreaComponent = styled.textarea<{ $isError: boolean }>`
   border: none;
   outline: ${(props) =>
     props.$isError ? '1.5px solid var(--red-default)' : 'none'};
-  height: 100px;
-  min-height: 100px;
+  height: max-content;
+  max-height: 100px;
+  min-height: 60px;
   width: 100%;
   padding: 14px 20px;
   border-radius: 12px;
   background-color: var(--neutral-low);
   color: var(--text-primary);
   font-size: 16px;
-  resize: vertical;
+  resize: none;
 
   &::placeholder {
     color: var(--text-tertiary);

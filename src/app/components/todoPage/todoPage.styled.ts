@@ -76,3 +76,19 @@ export const CheckBoxAndTodo = styled.div`
   display: flex;
   gap: 5px;
 `;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const ModalContent = styled.div`
+  margin: 15px 0 20px 0;
+`;
+
+export const ModalFooter = styled.div`
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+`;

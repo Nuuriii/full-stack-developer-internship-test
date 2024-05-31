@@ -6,6 +6,7 @@ import {
 } from './todoPage.styled';
 import { Text } from '@/app/components/common';
 import ListTodo from './ListTodo';
+import AddTodoModal from './AddTodoModal';
 
 export default function TodoPage() {
   return (
@@ -15,9 +16,7 @@ export default function TodoPage() {
           Todo List
         </Text>
 
-        <ButtonContainer>
-          <button className="btn-add">+</button>
-        </ButtonContainer>
+        <AddTodoModal />
 
         <ListTodo />
       </TodoWrapper>
