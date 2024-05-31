@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -31,7 +30,7 @@ const Example: React.FC = () => {
   };
 
   const deleteTask = async (id: number) => {
-    await axios.delete(`/api/todo/${id}`);
+    const response = await axios.delete(`/api/todo/${id}`);
     setTasks(tasks.filter((task) => task.id !== id));
   };
 

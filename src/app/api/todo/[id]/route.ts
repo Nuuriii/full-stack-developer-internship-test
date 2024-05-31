@@ -9,7 +9,7 @@ export async function PUT(
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = parseInt(params.id);
+    const id = params.id;
     const { title, completed } = await req.json();
     const task = await prisma.task.update({
       where: { id },
@@ -26,10 +26,14 @@ export async function DELETE(
   { params }: { params: { id: string } },
 ) {
   try {
-    const id = parseInt(params.id);
+    const id = params.id;
     await prisma.task.delete({ where: { id } });
-    return NextResponse.json({}, { status: 204 });
+    return NextResponse.json(
+      { status: 'success', message: 'success delete todo' },
+      { status: 200 },
+    );
   } catch (error: any) {
+    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
