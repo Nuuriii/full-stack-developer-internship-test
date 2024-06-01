@@ -35,23 +35,6 @@ export default function AddTodoModal() {
     },
   });
 
-  const addTask = async () => {
-    try {
-      if (todo) {
-        const { data: response } = await axios.post('/api/todo', {
-          title: todo,
-        });
-        // const responseValue = response;
-        console.log(response);
-        dispatch(addTodo(response));
-        setIsShow(false);
-        setTodo('');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
       <ButtonContainer>
