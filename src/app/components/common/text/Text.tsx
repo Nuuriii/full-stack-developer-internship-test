@@ -1,7 +1,7 @@
 'use client';
 import { poppins } from '@/app/fonts';
 import { ElementType } from 'react';
-import { TextComponent } from './text.styled';
+import { TextComponent } from './Text.styled';
 
 interface TextProps {
   htmlTag: ElementType;

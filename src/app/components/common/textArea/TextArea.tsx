@@ -5,7 +5,7 @@ import {
   TextAreaContainer,
   TextAreaComponent,
   ErrorContainer,
-} from './textArea.styled';
+} from './TextArea.styled';
 
 interface TextAreaProps {
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
