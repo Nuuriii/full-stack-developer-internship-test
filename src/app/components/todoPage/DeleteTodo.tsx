@@ -5,6 +5,7 @@ import axios from 'axios';
 import { deleteTodo } from '@/app/lib/reduxToolkit/todo/todoSlice';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
+import { X } from 'lucide-react';
 
 interface DeleteTodoModalProps {
   id: string;
@@ -41,18 +42,22 @@ export default function DeleteTodoModal({
         <Text htmlTag={'h1'} type={'heading-large'}>
           Delete Todo
         </Text>
-        <button
+        <Button
+          type="no-bg"
+          className="close-btn"
           onClick={() => {
             setShowDeletedModal(false);
             closeModal();
           }}
         >
-          X
-        </button>
+          <X size={18} />
+        </Button>
       </ModalHeader>
 
       <ModalContent>
-        <p>Yakin mau hapus</p>
+        <Text htmlTag={'p'} type="paragraph-regular">
+          Are you sure you want to delete this todo?
+        </Text>
       </ModalContent>
 
       <ModalFooter>
@@ -66,6 +71,7 @@ export default function DeleteTodoModal({
           Cancel
         </Button>
         <Button
+          disabled={mutation.isPending ? true : false}
           type="submit"
           onClick={() => {
             mutation.mutate();
