@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import { inter } from '@/app/fonts';
+import { poppins } from '@/app/fonts';
 import { Text } from '@/app/components/common/index';
 import {
   LabelContainer,
@@ -69,7 +69,7 @@ export default function Input({
             <InputContainer
               $isError={error}
               $isFocus={focus}
-              className={inter.className}
+              className={poppins.className}
             >
               <InputComponent
                 type="number"
@@ -85,7 +85,7 @@ export default function Input({
               <ErrorMessageContainer>
                 <Text
                   htmlTag={'span'}
-                  type={'body-small'}
+                  type={'paragraph-small'}
                   color={'var(--red-default)'}
                 >
                   {errorMessage}
@@ -114,7 +114,7 @@ export default function Input({
             <InputContainer
               $isError={error}
               $isFocus={focus}
-              className={inter.className}
+              className={poppins.className}
             >
               <InputComponent
                 type={showPassword ? 'text' : 'password'}
@@ -138,7 +138,7 @@ export default function Input({
               <ErrorMessageContainer>
                 <Text
                   htmlTag={'span'}
-                  type={'body-small'}
+                  type={'paragraph-small'}
                   color={'var(--red-default)'}
                 >
                   {errorMessage}
@@ -168,7 +168,7 @@ export default function Input({
             <InputContainer
               $isError={error}
               $isFocus={focus}
-              className={inter.className}
+              className={poppins.className}
             >
               {type === 'no-icon' ? (
                 ''
@@ -189,7 +189,7 @@ export default function Input({
               <ErrorMessageContainer>
                 <Text
                   htmlTag={'span'}
-                  type={'body-small'}
+                  type={'paragraph-small'}
                   color={'var(--red-default)'}
                 >
                   {errorMessage}

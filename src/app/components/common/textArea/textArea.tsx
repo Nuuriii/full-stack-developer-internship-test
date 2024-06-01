@@ -1,6 +1,6 @@
 'use client';
 import { Text } from '@/app/components/common/index';
-import { inter } from '@/app/fonts';
+import { poppins } from '@/app/fonts';
 import Image from 'next/image';
 import {
   TextAreaContainer,
@@ -39,7 +39,7 @@ export default function TextArea({
       </Text>
       <TextAreaComponent
         $isError={error}
-        className={inter.className}
+        className={poppins.className}
         value={value}
         placeholder={placeHolder}
         onChange={onChange}
@@ -49,7 +49,7 @@ export default function TextArea({
         <ErrorContainer>
           <Text
             htmlTag={'span'}
-            type={'body-small'}
+            type={'paragraph-small'}
             color={'var(--red-default)'}
           >
             {errorMessage}

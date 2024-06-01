@@ -24,7 +24,7 @@ export default function ListTodo() {
   const todoListGlobalState = useSelector(
     (state: RootState) => state.todoListGlobalState,
   );
-  const [tasks, setTasks] = useState<Task[]>([]);
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedData, setEditedData] = useState({
     id: '',
@@ -35,7 +35,7 @@ export default function ListTodo() {
   const getData = async () => {
     try {
       const { data: getTodoList } = await axios.get('/api/todo');
-      console.log(getTodoList);
+
       dispatch(updateListTodo(getTodoList));
     } catch (error) {
       console.log(error);
@@ -56,8 +56,6 @@ export default function ListTodo() {
     setEditedData({ id: id, todo: title, completed: completed });
   };
 
-  console.log(editedData);
-  console.log(showEditModal);
   return (
     <>
       {showEditModal && (
