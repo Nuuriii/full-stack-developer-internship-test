@@ -11,8 +11,8 @@ export const PopoverContent = styled.div<{ $visible: boolean }>`
   transition: opacity 0.3s;
   position: absolute;
   z-index: 1;
-  top: 0;
-  right: 100%;
+  top: -5px;
+  right: 10%;
   transform: translateX(-50%);
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

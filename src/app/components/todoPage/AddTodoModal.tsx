@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '@/app/lib/reduxToolkit/todo/todoSlice';
 import { useMutation } from '@tanstack/react-query';
-import { Plus } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 
 export default function AddTodoModal() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export default function AddTodoModal() {
     <>
       <ButtonContainer>
         <Button type="primary" onClick={handleModal} className="btn-add">
-          <Plus size={24} />
+          <Plus size={20} />
         </Button>
       </ButtonContainer>
       <Modal isClose={show}>
@@ -48,8 +48,8 @@ export default function AddTodoModal() {
           <Text htmlTag={'h1'} type={'heading-large'}>
             Add New Todo
           </Text>
-          <Button type="primary" onClick={handleModal}>
-            X
+          <Button type="no-bg" onClick={handleModal} className="close-btn">
+            <X size={18} />
           </Button>
         </ModalHeader>
 

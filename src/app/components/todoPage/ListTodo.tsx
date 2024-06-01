@@ -3,8 +3,9 @@ import {
   ListTodoContainer,
   TodoItemWrapper,
   CheckBoxAndTodo,
+  MenuAction,
 } from './todoPage.styled';
-import { Text, PopOver } from '@/app/components/common';
+import { Text, PopOver, Button } from '@/app/components/common';
 import { useState } from 'react';
 import axios from 'axios';
 import EditTodoModal from './EditTodoModal';
@@ -16,6 +17,7 @@ import {
   editTodoCompleted,
 } from '@/app/lib/reduxToolkit/todo/todoSlice';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { PencilLine, Trash2 } from 'lucide-react';
 
 export default function ListTodo() {
   const dispatch = useDispatch();
@@ -123,16 +125,24 @@ export default function ListTodo() {
                   </Text>
                 </CheckBoxAndTodo>
                 <PopOver>
-                  <button
-                    onClick={() =>
-                      handleEditedTodo(item.id, item.title, item.completed)
-                    }
-                  >
-                    Edit
-                  </button>
-                  <button onClick={() => handleDeleteTodo(item.id)}>
-                    hapus
-                  </button>
+                  <MenuAction>
+                    <Button
+                      type="submit"
+                      className="edit-todo"
+                      onClick={() =>
+                        handleEditedTodo(item.id, item.title, item.completed)
+                      }
+                    >
+                      <PencilLine size={18} />
+                    </Button>
+                    <Button
+                      type="delete"
+                      className="delete-todo"
+                      onClick={() => handleDeleteTodo(item.id)}
+                    >
+                      <Trash2 size={18} />
+                    </Button>
+                  </MenuAction>
                 </PopOver>
               </TodoItemWrapper>
             ))}

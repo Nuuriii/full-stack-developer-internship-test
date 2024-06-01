@@ -3,7 +3,7 @@ import React from 'react';
 import { ButtonComponent } from './Button.styled';
 
 export interface ButtonProps {
-  type: 'primary' | 'submit' | 'delete' | 'cancel';
+  type: 'primary' | 'submit' | 'delete' | 'cancel' | 'no-bg';
   children: React.ReactNode;
   disabled?: boolean;
   className?: string;

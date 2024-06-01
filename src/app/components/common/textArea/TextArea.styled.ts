@@ -9,13 +9,12 @@ export const TextAreaContainer = styled.label`
 
 export const TextAreaComponent = styled.textarea<{ $isError: boolean }>`
   border: none;
-  outline: ${(props) =>
-    props.$isError ? '1.5px solid var(--red-default)' : 'none'};
+  outline: 1px solid var(--neutral-default);
   height: max-content;
   max-height: 100px;
   min-height: 60px;
   width: 100%;
-  padding: 14px 20px;
+  padding: 1px 8px;
   border-radius: 12px;
   background-color: var(--neutral-low);
   color: var(--text-primary);
@@ -30,10 +29,7 @@ export const TextAreaComponent = styled.textarea<{ $isError: boolean }>`
   }
 
   &:focus {
-    outline: ${(props) =>
-      props.$isError
-        ? '1.5px solid var(--red-default)'
-        : '1.5px solid var(--green-default)'};
+    outline: 2px solid var(--neutral-default);
   }
 `;
 

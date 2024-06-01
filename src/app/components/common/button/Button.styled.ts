@@ -19,18 +19,39 @@ export const ButtonComponent = styled.button<{
     ${({ $disabled }) => $disabled && 'transform: scale(1.05);'}
   }
 
+  &:active {
+    transform: scale(0.96);
+  }
+
   &.primary {
-    color: #ffffff;
-    background: var(--green-primary);
+    color: var(--text-white);
+    background: var(--bg-black);
+
+    &:hover {
+      background-color: var(--bg-black-medium);
+    }
+  }
+
+  &.no-bg {
+    color: var(--text-primary);
+    background: transparent;
   }
 
   &.submit {
-    color: #ffffff;
-    background: green;
+    color: var(--text-white);
+    background-color: var(--bg-blue);
+
+    &:hover {
+      background-color: var(--bg-blue-medium);
+    }
   }
 
   &.delete {
-    color: #ffffff;
-    background-color: red;
+    color: var(--text-white);
+    background-color: var(--bg-red);
+
+    &:hover {
+      background-color: var(--bg-red-medium);
+    }
   }
 `;

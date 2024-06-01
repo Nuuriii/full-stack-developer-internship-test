@@ -35,6 +35,7 @@ export const ButtonContainer = styled.div`
   & > .btn-add {
     padding: 5px 10px;
     height: auto;
+    background-color: var(--green-primary);
     color: var(--text-white);
   }
 `;
@@ -73,10 +74,40 @@ export const CheckBoxAndTodo = styled.div`
   gap: 5px;
 `;
 
+export const MenuAction = styled.div`
+  display: flex;
+  gap: 5px;
+
+  & > .edit-todo {
+    padding: 5px;
+    border-radius: 7px;
+  }
+
+  & > .delete-todo {
+    padding: 5px;
+    border-radius: 7px;
+  }
+`;
+
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & > .close-btn {
+    padding: 0;
+    background-color: transparent;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 100%;
+    width: 30px;
+    &:hover {
+      background-color: var(--neutral-medium);
+    }
+  }
 `;
 
 export const ModalContent = styled.div`
