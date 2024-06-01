@@ -51,7 +51,7 @@ export const ListTodoContainer = styled.div`
 
   gap: 15px;
   max-height: 550px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   & > .empty-todo-text {
     height: 300px;

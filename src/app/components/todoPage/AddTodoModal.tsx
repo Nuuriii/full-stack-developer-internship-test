@@ -7,6 +7,7 @@ import {
   ModalFooter,
 } from './todoPage.styled';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function AddTodoModal() {
   const [show, setIsShow] = useState(false);
@@ -14,6 +15,14 @@ export default function AddTodoModal() {
 
   const handleModal = () => {
     setIsShow(!show);
+  };
+
+  const addTask = async () => {
+    if (todo) {
+      const response = await axios.post('/api/todo', { title: todo });
+
+      setTodo('');
+    }
   };
 
   return (
@@ -42,7 +51,9 @@ export default function AddTodoModal() {
 
         <ModalFooter>
           <Button type="primary">Cancel</Button>
-          <Button type="submit">Add</Button>
+          <Button type="submit" onClick={addTask}>
+            Add
+          </Button>
         </ModalFooter>
       </Modal>
     </>

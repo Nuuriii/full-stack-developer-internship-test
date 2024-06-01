@@ -1,89 +1,52 @@
+'use client';
 import {
   ListTodoContainer,
   TodoItemWrapper,
   CheckBoxAndTodo,
 } from './todoPage.styled';
-import { Text } from '@/app/components/common';
+import { Text, PopOver } from '@/app/components/common';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { EllipsisVertical } from 'lucide-react';
+
+interface Task {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
 export default function ListTodo() {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    axios.get('/api/todo').then((response) => setTasks(response.data));
+  }, []);
+
   return (
     <ListTodoContainer>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>hahahahhaha</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-
-      <TodoItemWrapper>
-        <CheckBoxAndTodo>
-          <input type="checkbox" />
-          <p>jjj</p>
-        </CheckBoxAndTodo>
-        <div>Edit</div>
-      </TodoItemWrapper>
-      {/* <Text htmlTag={'p'} type="paragraph-regular" className="empty-todo-text">
-        Empty Todo. . .
-      </Text> */}
+      {tasks.length !== 0 ? (
+        <>
+          {tasks.map((item: any, index) => (
+            <TodoItemWrapper key={index}>
+              <CheckBoxAndTodo>
+                <input type="checkbox" />
+                <p>{item.title}</p>
+              </CheckBoxAndTodo>
+              <PopOver>
+                <button>Hlo</button>
+              </PopOver>
+            </TodoItemWrapper>
+          ))}
+        </>
+      ) : (
+        <Text
+          htmlTag={'p'}
+          type="paragraph-regular"
+          className="empty-todo-text"
+        >
+          Empty Todo. . .
+        </Text>
+      )}
     </ListTodoContainer>
   );
 }
