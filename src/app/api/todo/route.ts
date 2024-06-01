@@ -28,3 +28,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+export async function PUT(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { id, title, completed } = body;
+    const task = await prisma.task.update({
+      where: { id },
+      data: { title, completed },
+    });
+    return NextResponse.json(task);
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}

@@ -4,13 +4,10 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } },
-) {
+export async function PUT(req: NextRequest) {
   try {
-    const id = params.id;
-    const { title, completed } = await req.json();
+    const body = await req.json();
+    const { id, title, completed } = body;
     const task = await prisma.task.update({
       where: { id },
       data: { title, completed },
