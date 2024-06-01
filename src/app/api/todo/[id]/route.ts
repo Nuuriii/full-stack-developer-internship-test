@@ -1,13 +1,16 @@
-// app/api/tasks/[id]/route.ts
 import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function PUT(req: NextRequest) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } },
+) {
   try {
+    const id = params.id;
     const body = await req.json();
-    const { id, title, completed } = body;
+    const { title, completed } = body;
     const task = await prisma.task.update({
       where: { id },
       data: { title, completed },
