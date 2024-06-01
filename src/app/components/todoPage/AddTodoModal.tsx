@@ -8,8 +8,12 @@ import {
 } from './todoPage.styled';
 import { useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
+import { useMutation } from '@tanstack/react-query';
 
 export default function AddTodoModal() {
+  const dispatch = useDispatch();
   const [show, setIsShow] = useState(false);
   const [todo, setTodo] = useState('');
 
@@ -17,11 +21,34 @@ export default function AddTodoModal() {
     setIsShow(!show);
   };
 
-  const addTask = async () => {
-    if (todo) {
-      const response = await axios.post('/api/todo', { title: todo });
+  const mutation = useMutation({
+    mutationFn: async (newTodo: any) => {
+      try {
+        const { data: response } = await axios.post('/api/todo', newTodo);
+        dispatch(addTodo(response));
+        setIsShow(false);
+        setTodo('');
+        return response;
+      } catch (error) {
+        return error;
+      }
+    },
+  });
 
-      setTodo('');
+  const addTask = async () => {
+    try {
+      if (todo) {
+        const { data: response } = await axios.post('/api/todo', {
+          title: todo,
+        });
+        // const responseValue = response;
+        console.log(response);
+        dispatch(addTodo(response));
+        setIsShow(false);
+        setTodo('');
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -51,8 +78,13 @@ export default function AddTodoModal() {
 
         <ModalFooter>
           <Button type="primary">Cancel</Button>
-          <Button type="submit" onClick={addTask}>
-            Add
+          <Button
+            type="submit"
+            onClick={() => {
+              mutation.mutate({ title: todo });
+            }}
+          >
+            {mutation.isPending ? 'Loading' : 'Add'}
           </Button>
         </ModalFooter>
       </Modal>

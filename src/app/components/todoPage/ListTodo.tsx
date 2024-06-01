@@ -5,7 +5,7 @@ import {
   CheckBoxAndTodo,
 } from './todoPage.styled';
 import { Text, PopOver } from '@/app/components/common';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import EditTodoModal from './EditTodoModal';
 import { RootState } from '@/app/lib/reduxToolkit/store';
@@ -24,8 +24,8 @@ export default function ListTodo() {
     todo: '',
     completed: false,
   });
-  const { isFetching, data, error } = useQuery({
-    queryKey: ['todos'],
+  const { isFetching } = useQuery({
+    queryKey: [todoListGlobalState.todoList],
     queryFn: async () => {
       try {
         const { data: getTodoList } = await axios.get('/api/todo');

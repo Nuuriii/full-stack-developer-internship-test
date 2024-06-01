@@ -5,6 +5,8 @@ interface Task {
   id: number;
   title: string;
   completed: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ListNote {
@@ -22,9 +24,37 @@ export const counterSlice = createSlice({
     updateListTodo(state, action: PayloadAction<Task[]>) {
       state.todoList = action.payload;
     },
+    addTodo(state, action: PayloadAction<Task>) {
+      state.todoList.push(action.payload);
+    },
+    deleteTodo(state, action: PayloadAction<number>) {
+      state.todoList = state.todoList.filter(
+        (task) => task.id !== action.payload,
+      );
+    },
+    editTodoCompleted(
+      state,
+      action: PayloadAction<{ id: number; completed: boolean }>,
+    ) {
+      const task = state.todoList.find((task) => task.id === action.payload.id);
+      if (task) {
+        task.completed = action.payload.completed;
+      }
+    },
+    editTodoTitle(state, action: PayloadAction<{ id: number; title: string }>) {
+      const task = state.todoList.find((task) => task.id === action.payload.id);
+      if (task) {
+        task.title = action.payload.title;
+      }
+    },
   },
 });
 
-export const { updateListTodo } = counterSlice.actions;
-
+export const {
+  updateListTodo,
+  addTodo,
+  deleteTodo,
+  editTodoCompleted,
+  editTodoTitle,
+} = counterSlice.actions;
 export default counterSlice.reducer;
