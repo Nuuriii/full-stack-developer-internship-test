@@ -1,7 +1,6 @@
 'use client';
 import { Text } from '@/app/components/common/index';
 import { poppins } from '@/app/fonts';
-import Image from 'next/image';
 import {
   TextAreaContainer,
   TextAreaComponent,

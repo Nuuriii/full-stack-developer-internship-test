@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { ButtonComponent, WrapperButton } from './button.styled';
+import { ButtonComponent } from './button.styled';
 
 export interface ButtonProps {
   type: 'primary' | 'submit' | 'delete' | 'cancel';

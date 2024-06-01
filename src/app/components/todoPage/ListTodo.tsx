@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   updateListTodo,
   editTodoCompleted,
-} from '@/app/lib/reduxToolkit/note/noteSlice';
+} from '@/app/lib/reduxToolkit/todo/todoSlice';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 export default function ListTodo() {

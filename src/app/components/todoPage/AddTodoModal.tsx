@@ -9,7 +9,7 @@ import {
 import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
+import { addTodo } from '@/app/lib/reduxToolkit/todo/todoSlice';
 import { useMutation } from '@tanstack/react-query';
 
 export default function AddTodoModal() {

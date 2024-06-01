@@ -29,8 +29,6 @@ export default function Text({
   type,
   color,
 }: TextProps) {
-  let selectedFamily;
-
   return (
     <TextComponent
       as={htmlTag}

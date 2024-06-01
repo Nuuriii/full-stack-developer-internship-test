@@ -5,7 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
-import { editTodoTitle } from '@/app/lib/reduxToolkit/note/noteSlice';
+import { editTodoTitle } from '@/app/lib/reduxToolkit/todo/todoSlice';
 
 interface EditTodoProps {
   id: string;

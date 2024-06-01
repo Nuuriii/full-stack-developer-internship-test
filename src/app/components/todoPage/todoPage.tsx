@@ -1,10 +1,5 @@
 'use client';
-import {
-  TodoContainer,
-  TodoWrapper,
-  ButtonContainer,
-  TodoItemWrapper,
-} from './todoPage.styled';
+import { TodoContainer, TodoWrapper } from './todoPage.styled';
 import { Text } from '@/app/components/common';
 import ListTodo from './ListTodo';
 import AddTodoModal from './AddTodoModal';

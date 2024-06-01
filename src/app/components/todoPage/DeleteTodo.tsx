@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Text, Button } from '../common';
 import { ModalHeader, ModalContent, ModalFooter } from './todoPage.styled';
 import axios from 'axios';
-import { deleteTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
+import { deleteTodo } from '@/app/lib/reduxToolkit/todo/todoSlice';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 

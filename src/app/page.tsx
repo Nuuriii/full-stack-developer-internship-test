@@ -1,6 +1,4 @@
-import styles from './page.module.css';
-import TodoPage from './components/todoPage/todoPage';
-import Example from './components/example';
+import TodoPage from '@/app/components/todoPage/todoPage';
 
 export default function Home() {
   return (

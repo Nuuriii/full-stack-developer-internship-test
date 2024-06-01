@@ -1,11 +1,4 @@
 import styled from 'styled-components';
-import { ButtonProps } from './button';
-
-export const WrapperButton = styled.div`
-  .button-component {
-    text-decoration: none;
-  }
-`;
 
 export const ButtonComponent = styled.button<{
   $type: string;
