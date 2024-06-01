@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import StyledComponentsRegistry from './lib/registry';
 import ReduxProvider from './reduxToolkitProvider';
+import ReactQueryProvider from './reactQueryProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <StyledComponentsRegistry>
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
+          </ReduxProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
