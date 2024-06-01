@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import todoListReducer from '@/app/lib/reduxToolkit/note/noteSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    todoListGlobalState: todoListReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
