@@ -21,9 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <>
+          <ReactQueryProvider>
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-          </>
+          </ReactQueryProvider>
         </ReduxProvider>
       </body>
     </html>

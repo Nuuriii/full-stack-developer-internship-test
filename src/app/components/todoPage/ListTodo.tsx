@@ -7,45 +7,36 @@ import {
 import { Text, PopOver } from '@/app/components/common';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import DeleteTodo from './DeleteTodo';
 import EditTodoModal from './EditTodoModal';
 import { RootState } from '@/app/lib/reduxToolkit/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateListTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
-
-interface Task {
-  id: number;
-  title: string;
-  completed: boolean;
-}
+import { useQuery } from '@tanstack/react-query';
 
 export default function ListTodo() {
   const dispatch = useDispatch();
   const todoListGlobalState = useSelector(
     (state: RootState) => state.todoListGlobalState,
   );
-
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedData, setEditedData] = useState({
     id: '',
     todo: '',
     completed: false,
   });
+  const { isFetching, data, error } = useQuery({
+    queryKey: ['todos'],
+    queryFn: async () => {
+      try {
+        const { data: getTodoList } = await axios.get('/api/todo');
 
-  const getData = async () => {
-    try {
-      const { data: getTodoList } = await axios.get('/api/todo');
-
-      dispatch(updateListTodo(getTodoList));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, ['kkk']);
+        dispatch(updateListTodo(getTodoList));
+        return getTodoList;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
   const deleteTask = async (id: string) => {
     const response = await axios.delete(`/api/todo/${id}`);
@@ -89,6 +80,14 @@ export default function ListTodo() {
               </TodoItemWrapper>
             ))}
           </>
+        ) : isFetching === true ? (
+          <Text
+            htmlTag={'p'}
+            type="paragraph-regular"
+            className="empty-todo-text"
+          >
+            Loading. . .
+          </Text>
         ) : (
           <Text
             htmlTag={'p'}
