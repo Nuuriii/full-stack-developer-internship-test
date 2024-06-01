@@ -1,11 +1,6 @@
 import { useState } from 'react';
-import { Modal, TextArea, Text, Button } from '../common';
-import {
-  ButtonContainer,
-  ModalHeader,
-  ModalContent,
-  ModalFooter,
-} from './todoPage.styled';
+import { Modal, Text, Button } from '../common';
+import { ModalHeader, ModalContent, ModalFooter } from './todoPage.styled';
 import axios from 'axios';
 import { deleteTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
 import { useMutation } from '@tanstack/react-query';
@@ -23,9 +18,6 @@ export default function DeleteTodoModal({
   closeModal,
 }: DeleteTodoModalProps) {
   const [showDeletedModal, setShowDeletedModal] = useState(showDeleteModal);
-  const deleteTask = async () => {
-    const response = await axios.delete(`/api/todo/${id}`);
-  };
   const dispatch = useDispatch();
 
   const mutation = useMutation({
@@ -44,7 +36,7 @@ export default function DeleteTodoModal({
   });
 
   return (
-    <Modal isClose={showDeleteModal}>
+    <Modal isClose={showDeletedModal}>
       <ModalHeader>
         <Text htmlTag={'h1'} type={'heading-large'}>
           Delete Todo
