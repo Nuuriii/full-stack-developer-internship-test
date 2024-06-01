@@ -42,8 +42,6 @@ export default function ListTodo() {
     }
   };
 
-  console.log(todoListGlobalState.todoList);
-
   useEffect(() => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
