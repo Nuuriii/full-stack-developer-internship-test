@@ -8,6 +8,7 @@ import { Text, PopOver } from '@/app/components/common';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { EllipsisVertical } from 'lucide-react';
+import DeleteTodo from './DeleteTodo';
 
 interface Task {
   id: number;
@@ -22,6 +23,10 @@ export default function ListTodo() {
     axios.get('/api/todo').then((response) => setTasks(response.data));
   }, []);
 
+  const deleteTask = async (id: string) => {
+    const response = await axios.delete(`/api/todo/${id}`);
+  };
+
   return (
     <ListTodoContainer>
       {tasks.length !== 0 ? (
@@ -33,7 +38,8 @@ export default function ListTodo() {
                 <p>{item.title}</p>
               </CheckBoxAndTodo>
               <PopOver>
-                <button>Hlo</button>
+                <button>Edit</button>
+                <button onClick={() => deleteTask(item.id)}>hapus</button>
               </PopOver>
             </TodoItemWrapper>
           ))}
