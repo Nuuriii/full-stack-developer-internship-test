@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface Task {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
   createdAt: string;
@@ -27,21 +27,21 @@ export const counterSlice = createSlice({
     addTodo(state, action: PayloadAction<Task>) {
       state.todoList.push(action.payload);
     },
-    deleteTodo(state, action: PayloadAction<number>) {
+    deleteTodo(state, action: PayloadAction<string>) {
       state.todoList = state.todoList.filter(
         (task) => task.id !== action.payload,
       );
     },
     editTodoCompleted(
       state,
-      action: PayloadAction<{ id: number; completed: boolean }>,
+      action: PayloadAction<{ id: string; completed: boolean }>,
     ) {
       const task = state.todoList.find((task) => task.id === action.payload.id);
       if (task) {
         task.completed = action.payload.completed;
       }
     },
-    editTodoTitle(state, action: PayloadAction<{ id: number; title: string }>) {
+    editTodoTitle(state, action: PayloadAction<{ id: string; title: string }>) {
       const task = state.todoList.find((task) => task.id === action.payload.id);
       if (task) {
         task.title = action.payload.title;

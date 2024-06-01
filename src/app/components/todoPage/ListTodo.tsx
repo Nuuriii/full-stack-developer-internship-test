@@ -8,6 +8,7 @@ import { Text, PopOver } from '@/app/components/common';
 import { useState } from 'react';
 import axios from 'axios';
 import EditTodoModal from './EditTodoModal';
+import DeleteTodoModal from './DeleteTodo';
 import { RootState } from '@/app/lib/reduxToolkit/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateListTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
@@ -24,6 +25,9 @@ export default function ListTodo() {
     todo: '',
     completed: false,
   });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deletedId, setDeletedId] = useState('');
+
   const { isFetching } = useQuery({
     queryKey: [todoListGlobalState.todoList],
     queryFn: async () => {
@@ -47,6 +51,11 @@ export default function ListTodo() {
     setEditedData({ id: id, todo: title, completed: completed });
   };
 
+  const handleDeleteTodo = (id: string) => {
+    setShowDeleteModal(true);
+    setDeletedId(id);
+  };
+
   return (
     <>
       {showEditModal && (
@@ -56,6 +65,13 @@ export default function ListTodo() {
           completed={editedData.completed}
           closeModal={() => setShowEditModal(false)}
           showEditModal={showEditModal}
+        />
+      )}
+      {showDeleteModal && (
+        <DeleteTodoModal
+          id={deletedId}
+          closeModal={() => setShowDeleteModal(false)}
+          showDeleteModal={showDeleteModal}
         />
       )}
       <ListTodoContainer>
@@ -75,7 +91,9 @@ export default function ListTodo() {
                   >
                     Edit
                   </button>
-                  <button onClick={() => deleteTask(item.id)}>hapus</button>
+                  <button onClick={() => handleDeleteTodo(item.id)}>
+                    hapus
+                  </button>
                 </PopOver>
               </TodoItemWrapper>
             ))}
