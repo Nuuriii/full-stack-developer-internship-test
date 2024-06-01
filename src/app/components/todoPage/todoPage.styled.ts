@@ -17,7 +17,6 @@ export const TodoWrapper = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   padding: 0px 0px 40px 0;
-
   & > .title-app {
     padding: 20px 0;
     width: 100%;
@@ -31,11 +30,9 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: end;
   padding: 10px 10px 0 10px;
-
   & > .btn-add {
     padding: 5px 10px;
     height: auto;
-    background-color: var(--green-primary);
     color: var(--text-white);
   }
 `;
@@ -45,7 +42,6 @@ export const ListTodoContainer = styled.div`
   padding: 0px 10px 90px 10px;
   margin: 20px 0 0 0;
   flex-direction: column;
-
   gap: 15px;
   max-height: 550px;
   overflow-y: auto;
@@ -58,8 +54,9 @@ export const ListTodoContainer = styled.div`
   }
 `;
 
-export const TodoItemWrapper = styled.div`
-  background-color: black;
+export const TodoItemWrapper = styled.div<{ $ischecked: boolean }>`
+  background-color: ${(props) =>
+    props.$ischecked ? '#2b577a' : 'var(--bg-black-small)'};
   color: white;
   width: 100%;
   padding: 10px;
@@ -71,6 +68,10 @@ export const TodoItemWrapper = styled.div`
 
 export const CheckBoxAndTodo = styled.div`
   display: flex;
+  width: 100%;
+  max-width: 300px;
+  align-items: start;
+  word-break: break-all;
   gap: 5px;
 `;
 

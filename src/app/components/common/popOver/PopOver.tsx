@@ -9,9 +9,10 @@ import { EllipsisVertical } from 'lucide-react';
 
 interface PopOverProps {
   children: React.ReactNode;
+  isChecked: boolean;
 }
 
-export default function PopOver({ children }: PopOverProps) {
+export default function PopOver({ children, isChecked }: PopOverProps) {
   const [isVisible, setIsVisible] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +34,10 @@ export default function PopOver({ children }: PopOverProps) {
 
   return (
     <PopoverContainer ref={popoverRef}>
-      <TriggerButton onClick={() => setIsVisible(!isVisible)}>
+      <TriggerButton
+        $ischecked={isChecked}
+        onClick={() => setIsVisible(!isVisible)}
+      >
         <EllipsisVertical size={18} />
       </TriggerButton>
       <PopoverContent $visible={isVisible}>{children}</PopoverContent>

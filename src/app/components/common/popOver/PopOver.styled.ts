@@ -20,7 +20,7 @@ export const PopoverContent = styled.div<{ $visible: boolean }>`
   border-radius: 4px;
 `;
 
-export const TriggerButton = styled.button`
+export const TriggerButton = styled.button<{ $ischecked: boolean }>`
   color: white;
   border: none;
   display: flex;
@@ -32,6 +32,6 @@ export const TriggerButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   &:hover {
-    background-color: #005bb5;
+    background-color: ${(props) => (props.$ischecked ? '#508fbf' : '#424242')};
   }
 `;

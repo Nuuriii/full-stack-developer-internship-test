@@ -107,7 +107,7 @@ export default function ListTodo() {
         {todoListGlobalState.todoList.length !== 0 ? (
           <>
             {todoListGlobalState.todoList.map((item: any, index) => (
-              <TodoItemWrapper key={index}>
+              <TodoItemWrapper $ischecked={item.completed} key={index}>
                 <CheckBoxAndTodo>
                   <input
                     type="checkbox"
@@ -124,7 +124,7 @@ export default function ListTodo() {
                     {item.title}
                   </Text>
                 </CheckBoxAndTodo>
-                <PopOver>
+                <PopOver isChecked={item.completed}>
                   <MenuAction>
                     <Button
                       type="submit"
