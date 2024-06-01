@@ -11,8 +11,11 @@ import EditTodoModal from './EditTodoModal';
 import DeleteTodoModal from './DeleteTodo';
 import { RootState } from '@/app/lib/reduxToolkit/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateListTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
-import { useQuery } from '@tanstack/react-query';
+import {
+  updateListTodo,
+  editTodoCompleted,
+} from '@/app/lib/reduxToolkit/note/noteSlice';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 export default function ListTodo() {
   const dispatch = useDispatch();
@@ -42,10 +45,6 @@ export default function ListTodo() {
     },
   });
 
-  const deleteTask = async (id: string) => {
-    const response = await axios.delete(`/api/todo/${id}`);
-  };
-
   const handleEditedTodo = (id: string, title: string, completed: boolean) => {
     setShowEditModal(true);
     setEditedData({ id: id, todo: title, completed: completed });
@@ -55,6 +54,34 @@ export default function ListTodo() {
     setShowDeleteModal(true);
     setDeletedId(id);
   };
+
+  const mutation = useMutation({
+    mutationFn: async (updateComplete: {
+      id: string;
+      title: string;
+      completed: boolean;
+    }) => {
+      try {
+        const { data: response } = await axios.put(
+          `/api/todo/${updateComplete.id}`,
+          {
+            title: updateComplete.title,
+            completed: updateComplete.completed,
+          },
+        );
+        dispatch(
+          editTodoCompleted({
+            id: updateComplete.id,
+            completed: updateComplete.completed,
+          }),
+        );
+
+        return response;
+      } catch (error) {
+        return error;
+      }
+    },
+  });
 
   return (
     <>
@@ -80,7 +107,17 @@ export default function ListTodo() {
             {todoListGlobalState.todoList.map((item: any, index) => (
               <TodoItemWrapper key={index}>
                 <CheckBoxAndTodo>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    checked={item.completed}
+                    onChange={(e) => {
+                      mutation.mutate({
+                        id: item.id,
+                        title: item.title,
+                        completed: !item.completed,
+                      });
+                    }}
+                  />
                   <Text htmlTag={'p'} type="paragraph-small">
                     {item.title}
                   </Text>
