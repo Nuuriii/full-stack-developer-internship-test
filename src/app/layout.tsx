@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StyledComponentsRegistry>
-          <ReduxProvider>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
-          </ReduxProvider>
-        </StyledComponentsRegistry>
+        <ReduxProvider>
+          <>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </>
+        </ReduxProvider>
       </body>
     </html>
   );

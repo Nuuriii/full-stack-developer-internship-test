@@ -1,4 +1,5 @@
-import { inter, raleway } from '@/app/fonts';
+'use client';
+import { poppins } from '@/app/fonts';
 import { ElementType } from 'react';
 import { TextComponent } from './text.styled';
 
@@ -7,10 +8,6 @@ interface TextProps {
   className?: string;
   children: React.ReactNode;
   type:
-    | 'headline-small'
-    | 'headline-regular'
-    | 'navigation-active'
-    | 'navigation-default'
     | 'paragraph-xsmall'
     | 'paragraph-small'
     | 'paragraph-regular'
@@ -21,12 +18,7 @@ interface TextProps {
     | 'heading-regular'
     | 'heading-medium'
     | 'heading-large'
-    | 'heading-xlarge'
-    | 'body-caption'
-    | 'body-xsmall'
-    | 'body-small'
-    | 'body-regular'
-    | 'body-medium';
+    | 'heading-xlarge';
   color?: string;
 }
 
@@ -39,22 +31,22 @@ export default function Text({
 }: TextProps) {
   let selectedFamily;
 
-  switch (type) {
-    case 'headline-small':
-    case 'headline-regular':
-    case 'navigation-active':
-    case 'navigation-default':
-      selectedFamily = raleway.className;
-      break;
-    default:
-      selectedFamily = inter.className;
-      break;
-  }
+  // switch (type) {
+  //   case 'headline-small':
+  //   case 'headline-regular':
+  //   case 'navigation-active':
+  //   case 'navigation-default':
+  //     selectedFamily = raleway.className;
+  //     break;
+  //   default:
+  //     selectedFamily = inter.className;
+  //     break;
+  // }
 
   return (
     <TextComponent
       as={htmlTag}
-      className={`${selectedFamily} ${className}`}
+      className={`${poppins.className} ${className}`}
       $color={color}
       $type={type}
     >

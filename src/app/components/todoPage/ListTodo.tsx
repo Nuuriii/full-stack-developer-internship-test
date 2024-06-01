@@ -9,6 +9,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import DeleteTodo from './DeleteTodo';
 import EditTodoModal from './EditTodoModal';
+import { RootState } from '@/app/lib/reduxToolkit/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateListTodo } from '@/app/lib/reduxToolkit/note/noteSlice';
 
 interface Task {
   id: number;
@@ -17,8 +20,11 @@ interface Task {
 }
 
 export default function ListTodo() {
+  const dispatch = useDispatch();
+  const todoListGlobalState = useSelector(
+    (state: RootState) => state.todoListGlobalState,
+  );
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [closePopOver, setClosePopOver] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editedData, setEditedData] = useState({
     id: '',
@@ -26,9 +32,22 @@ export default function ListTodo() {
     completed: false,
   });
 
+  const getData = async () => {
+    try {
+      const { data: getTodoList } = await axios.get('/api/todo');
+      console.log(getTodoList);
+      dispatch(updateListTodo(getTodoList));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(todoListGlobalState.todoList);
+
   useEffect(() => {
-    axios.get('/api/todo').then((response) => setTasks(response.data));
-  }, []);
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, ['kkk']);
 
   const deleteTask = async (id: string) => {
     const response = await axios.delete(`/api/todo/${id}`);
@@ -53,9 +72,9 @@ export default function ListTodo() {
         />
       )}
       <ListTodoContainer>
-        {tasks.length !== 0 ? (
+        {todoListGlobalState.todoList.length !== 0 ? (
           <>
-            {tasks.map((item: any, index) => (
+            {todoListGlobalState.todoList.map((item: any, index) => (
               <TodoItemWrapper key={index}>
                 <CheckBoxAndTodo>
                   <input type="checkbox" />
