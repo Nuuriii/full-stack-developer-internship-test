@@ -21,7 +21,7 @@ export const ButtonComponent = styled.button<{
 
   &.primary {
     color: #ffffff;
-    background: black;
+    background: var(--green-primary);
   }
 
   &.submit {

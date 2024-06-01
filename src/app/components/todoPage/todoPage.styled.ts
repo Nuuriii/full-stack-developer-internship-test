@@ -33,13 +33,9 @@ export const ButtonContainer = styled.div`
   padding: 10px 10px 0 10px;
 
   & > .btn-add {
-    border: none;
-    border-radius: 5px;
-    padding: 0 10px;
+    padding: 5px 10px;
     height: auto;
-    font-size: 20px;
-    background-color: black;
-    color: white;
+    color: var(--text-white);
   }
 `;
 
