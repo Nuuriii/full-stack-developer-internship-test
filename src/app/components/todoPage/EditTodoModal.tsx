@@ -3,6 +3,9 @@ import { Modal, Text, TextArea, Button } from '../common';
 import { ModalHeader, ModalContent, ModalFooter } from './todoPage.styled';
 import { useState } from 'react';
 import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+import { editTodoTitle } from '@/app/lib/reduxToolkit/note/noteSlice';
 
 interface EditTodoProps {
   id: string;
@@ -20,7 +23,8 @@ export default function EditTodoModal({
   closeModal,
 }: EditTodoProps) {
   const [newTodo, setNewTodo] = useState(title);
-  const [showModal, setShowModal] = useState(showEditModal);
+  const [showEditedModal, setShowEditedModal] = useState(showEditModal);
+  const dispatch = useDispatch();
 
   const updateTask = async () => {
     const response = await axios.put(`/api/todo/${id}`, {
@@ -29,15 +33,33 @@ export default function EditTodoModal({
     });
   };
 
+  const mutation = useMutation({
+    mutationFn: async () => {
+      try {
+        const { data: response } = await axios.put(`/api/todo/${id}`, {
+          title: newTodo,
+          completed: completed,
+        });
+        dispatch(editTodoTitle({ id: id, title: newTodo }));
+        setShowEditedModal(false);
+        closeModal();
+
+        return response;
+      } catch (error) {
+        return error;
+      }
+    },
+  });
+
   return (
-    <Modal isClose={showModal}>
+    <Modal isClose={showEditedModal}>
       <ModalHeader>
         <Text htmlTag={'h1'} type={'heading-large'}>
           Edit Todo
         </Text>
         <button
           onClick={() => {
-            setShowModal(false);
+            setShowEditedModal(false);
             closeModal();
           }}
         >
@@ -58,14 +80,19 @@ export default function EditTodoModal({
         <Button
           type="primary"
           onClick={() => {
-            setShowModal(false);
+            setShowEditedModal(false);
             closeModal();
           }}
         >
           Cancel
         </Button>
-        <Button type="submit" onClick={updateTask}>
-          Update
+        <Button
+          type="submit"
+          onClick={() => {
+            mutation.mutate();
+          }}
+        >
+          {mutation.isPending ? 'Updated. . .' : 'Update'}
         </Button>
       </ModalFooter>
     </Modal>
