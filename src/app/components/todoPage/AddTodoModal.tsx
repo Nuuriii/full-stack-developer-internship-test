@@ -60,7 +60,9 @@ export default function AddTodoModal() {
         </ModalContent>
 
         <ModalFooter>
-          <Button type="primary">Cancel</Button>
+          <Button type="primary" onClick={() => setIsShow(false)}>
+            Cancel
+          </Button>
           <Button
             type="submit"
             onClick={() => {
