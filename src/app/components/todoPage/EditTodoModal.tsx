@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { editTodoTitle } from '@/app/lib/reduxToolkit/todo/todoSlice';
+import { X } from 'lucide-react';
 
 interface EditTodoProps {
   id: string;
@@ -57,14 +58,16 @@ export default function EditTodoModal({
         <Text htmlTag={'h1'} type={'heading-large'}>
           Edit Todo
         </Text>
-        <button
+        <Button
+          type="no-bg"
+          className="close-btn"
           onClick={() => {
             setShowEditedModal(false);
             closeModal();
           }}
         >
-          X
-        </button>
+          <X size={18} />
+        </Button>
       </ModalHeader>
 
       <ModalContent>
