@@ -9,13 +9,16 @@ const FontSizeByType = (type: string) => {
 
     case 'paragraph-small':
     case 'heading-small':
+      return '13px';
 
     case 'paragraph-regular':
     case 'heading-regular':
+      return '14';
 
     case 'paragraph-text-editor':
     case 'paragraph-medium':
     case 'heading-medium':
+      return '16px';
 
     case 'heading-large':
       return '18px';

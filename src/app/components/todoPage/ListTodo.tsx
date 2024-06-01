@@ -81,7 +81,9 @@ export default function ListTodo() {
               <TodoItemWrapper key={index}>
                 <CheckBoxAndTodo>
                   <input type="checkbox" />
-                  <p>{item.title}</p>
+                  <Text htmlTag={'p'} type="paragraph-small">
+                    {item.title}
+                  </Text>
                 </CheckBoxAndTodo>
                 <PopOver>
                   <button
