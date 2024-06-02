@@ -5,7 +5,7 @@ import {
   CheckBoxAndTodo,
   MenuAction,
 } from './todoPage.styled';
-import { Text, PopOver, Button, Checkbox } from '@/app/components/common';
+import { Text, PopOver, Button } from '@/app/components/common';
 import { useState } from 'react';
 import axios from 'axios';
 import EditTodoModal from './EditTodoModal';
