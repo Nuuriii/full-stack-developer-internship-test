@@ -26,6 +26,7 @@ export default function EditTodoModal({
   const [newTodo, setNewTodo] = useState(title);
   const [showEditedModal, setShowEditedModal] = useState(showEditModal);
   const dispatch = useDispatch();
+  const [error, setError] = useState(false);
 
   const updateTask = async () => {
     const response = await axios.put(`/api/todo/${id}`, {
@@ -36,6 +37,11 @@ export default function EditTodoModal({
 
   const mutation = useMutation({
     mutationFn: async () => {
+      if (newTodo === '') {
+        setError(true);
+        return;
+      }
+
       try {
         const { data: response } = await axios.put(`/api/todo/${id}`, {
           title: newTodo,
@@ -76,6 +82,8 @@ export default function EditTodoModal({
           placeHolder={''}
           labelText={''}
           value={newTodo}
+          error={error}
+          errorMessage="Input is still empty"
         />
       </ModalContent>
 
