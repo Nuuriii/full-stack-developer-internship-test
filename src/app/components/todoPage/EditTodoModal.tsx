@@ -72,7 +72,7 @@ export default function EditTodoModal({
 
       <ModalContent>
         <TextArea
-          onChange={(e) => setNewTodo(e.target.value)}
+          onChange={(e) => setNewTodo(e)}
           placeHolder={''}
           labelText={''}
           value={newTodo}

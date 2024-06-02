@@ -31,12 +31,18 @@ export default function TextArea({
   const [currentValue, setCurrentValue] = useState(value || '');
 
   useEffect(() => {
-    if (textAreaRef.current && currentValue !== value) {
-      textAreaRef.current.innerText = value || '';
-      setCurrentValue(value || '');
+    if (value !== undefined && currentValue !== value) {
+      setCurrentValue(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
+
+  useEffect(() => {
+    if (textAreaRef.current && textAreaRef.current.innerText !== currentValue) {
+      textAreaRef.current.innerText = currentValue;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentValue]);
 
   const handleInput = () => {
     if (textAreaRef.current) {
