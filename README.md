@@ -48,3 +48,8 @@ Welcome to the selection process for the Full Stack Developer Internship positio
    ```sh
    bun dev
    ```
+
+## Deployment
+
+The application is deployed on Vercel. You can access it at:
+https://mytodo-app-nextjs.vercel.app/
