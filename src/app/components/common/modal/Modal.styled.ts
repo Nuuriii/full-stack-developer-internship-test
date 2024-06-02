@@ -21,6 +21,7 @@ export const ModalContent = styled.div`
   z-index: 1000;
   border-radius: 10px;
   padding: 25px;
+  width: 400px;
   overflow-y: auto;
   //overflow-x: hidden;
 `;

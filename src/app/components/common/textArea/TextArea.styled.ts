@@ -7,20 +7,24 @@ export const TextAreaContainer = styled.label`
   }
 `;
 
-export const TextAreaComponent = styled.textarea<{ $isError: boolean }>`
+export const TextAreaComponent = styled.span<{ $isError: boolean }>`
   border: none;
   outline: 1px solid var(--neutral-default);
-  height: max-content;
-  max-height: 100px;
-  min-height: 60px;
+  max-height: 200px;
+  min-height: 100px;
   width: 100%;
   padding: 1px 8px;
   border-radius: 12px;
   background-color: var(--neutral-low);
   color: var(--text-primary);
   font-size: 16px;
-  resize: none;
-
+  resize: both;
+  display: block;
+  overflow-y: auto;
+  &[contenteditable]:empty::before {
+    content: 'Placeholder still possible';
+    color: gray;
+  }
   &::placeholder {
     color: var(--text-tertiary);
     line-height: 20.8px;

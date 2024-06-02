@@ -6,9 +6,10 @@ import {
   TextAreaComponent,
   ErrorContainer,
 } from './TextArea.styled';
+import { useRef, useEffect, useState } from 'react';
 
 interface TextAreaProps {
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (e: string) => void;
   placeHolder: string;
   labelText: string;
   value?: string;
@@ -26,6 +27,24 @@ export default function TextArea({
   error = false,
   errorMessage,
 }: TextAreaProps) {
+  const textAreaRef = useRef<HTMLDivElement>(null);
+  const [currentValue, setCurrentValue] = useState(value || '');
+
+  useEffect(() => {
+    if (textAreaRef.current && currentValue !== value) {
+      textAreaRef.current.innerText = value || '';
+      setCurrentValue(value || '');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  const handleInput = () => {
+    if (textAreaRef.current) {
+      const value = textAreaRef.current.innerText;
+      setCurrentValue(value);
+      onChange(value);
+    }
+  };
   return (
     <TextAreaContainer className={className}>
       <Text
@@ -38,10 +57,11 @@ export default function TextArea({
       </Text>
       <TextAreaComponent
         $isError={error}
+        ref={textAreaRef}
         className={poppins.className}
-        value={value}
-        placeholder={placeHolder}
-        onChange={onChange}
+        onInput={handleInput}
+        role="textbox"
+        contentEditable
       />
 
       {error ? (

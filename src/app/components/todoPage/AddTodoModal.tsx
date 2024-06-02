@@ -55,7 +55,7 @@ export default function AddTodoModal() {
 
         <ModalContent>
           <TextArea
-            onChange={(e) => setTodo(e.target.value)}
+            onChange={(e) => setTodo(e)}
             placeHolder={''}
             labelText={''}
             value={todo}
