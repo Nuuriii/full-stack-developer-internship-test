@@ -28,13 +28,6 @@ export default function EditTodoModal({
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
 
-  const updateTask = async () => {
-    const response = await axios.put(`/api/todo/${id}`, {
-      title: newTodo,
-      completed: completed,
-    });
-  };
-
   const mutation = useMutation({
     mutationFn: async () => {
       if (newTodo === '') {
