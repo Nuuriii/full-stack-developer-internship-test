@@ -7,6 +7,7 @@ import {
   ErrorContainer,
 } from './TextArea.styled';
 import { useRef, useEffect, useState } from 'react';
+import { Info } from 'lucide-react';
 
 interface TextAreaProps {
   onChange: (e: string) => void;
@@ -72,10 +73,11 @@ export default function TextArea({
 
       {error ? (
         <ErrorContainer>
+          <Info color="var(--bg-red)" size={15} />
           <Text
             htmlTag={'span'}
             type={'paragraph-small'}
-            color={'var(--red-default)'}
+            color={'var(--bg-red)'}
           >
             {errorMessage}
           </Text>

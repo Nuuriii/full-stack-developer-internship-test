@@ -9,7 +9,8 @@ export const TextAreaContainer = styled.label`
 
 export const TextAreaComponent = styled.span<{ $isError: boolean }>`
   border: none;
-  outline: 1px solid var(--neutral-default);
+  outline: 1px solid
+    ${(props) => (props.$isError ? 'var(--bg-red)' : 'var(--neutral-default)')};
   max-height: 200px;
   min-height: 100px;
   width: 100%;
@@ -33,7 +34,9 @@ export const TextAreaComponent = styled.span<{ $isError: boolean }>`
   }
 
   &:focus {
-    outline: 2px solid var(--neutral-default);
+    outline: 2px solid
+      ${(props) =>
+        props.$isError ? 'var(--bg-red)' : 'var(--neutral-default)'};
   }
 `;
 

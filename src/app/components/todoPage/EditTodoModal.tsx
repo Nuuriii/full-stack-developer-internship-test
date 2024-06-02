@@ -53,7 +53,7 @@ export default function EditTodoModal({
   });
 
   return (
-    <Modal isClose={showEditedModal}>
+    <Modal isClose={showEditedModal} onClose={() => setShowEditedModal(false)}>
       <ModalHeader>
         <Text htmlTag={'h1'} type={'heading-large'}>
           Edit Todo

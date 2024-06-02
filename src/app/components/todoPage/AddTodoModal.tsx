@@ -17,13 +17,20 @@ export default function AddTodoModal() {
   const dispatch = useDispatch();
   const [show, setIsShow] = useState(false);
   const [todo, setTodo] = useState('');
+  const [error, setError] = useState(false);
 
   const handleModal = () => {
     setIsShow(!show);
+    setError(false);
   };
 
   const mutation = useMutation({
-    mutationFn: async (newTodo: any) => {
+    mutationFn: async (newTodo: { title: string }) => {
+      if (newTodo.title === '') {
+        setError(true);
+        return;
+      }
+
       try {
         const { data: response } = await axios.post('/api/todo', newTodo);
         dispatch(addTodo(response));
@@ -43,7 +50,7 @@ export default function AddTodoModal() {
           <Plus size={20} />
         </Button>
       </ButtonContainer>
-      <Modal isClose={show}>
+      <Modal isClose={show} onClose={() => setIsShow(false)}>
         <ModalHeader>
           <Text htmlTag={'h1'} type={'heading-large'}>
             Add New Todo
@@ -59,11 +66,19 @@ export default function AddTodoModal() {
             placeHolder={''}
             labelText={''}
             value={todo}
+            error={error}
+            errorMessage="Tolong isi input terlebih dahulu"
           />
         </ModalContent>
 
         <ModalFooter>
-          <Button type="primary" onClick={() => setIsShow(false)}>
+          <Button
+            type="primary"
+            onClick={() => {
+              setIsShow(false);
+              setError(false);
+            }}
+          >
             Cancel
           </Button>
           <Button
